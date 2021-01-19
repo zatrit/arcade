@@ -8,6 +8,8 @@
     <NoWarn>8002</NoWarn>
     <IsTestProject>true</IsTestProject>
     <PlatformTarget Condition=" '$(PlatformTarget)' == '' ">x86</PlatformTarget>
+    <XUnitPublishTargetFramework>$(TargetFrameworks)</XUnitPublishTargetFramework>
+    <XUnitRuntimeTargetFramework>$(TargetFrameworks)</XUnitRuntimeTargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
