@@ -1,15 +1,11 @@
 <!-- Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license. -->
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net472</TargetFrameworks>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFramework>net472</TargetFramework>
     <LangVersion>Latest</LangVersion>
     <NoWarn>8002</NoWarn>
     <IsTestProject>true</IsTestProject>
     <PlatformTarget Condition=" '$(PlatformTarget)' == '' ">x86</PlatformTarget>
-    <XUnitPublishTargetFramework>$(TargetFrameworks)</XUnitPublishTargetFramework>
-    <XUnitRuntimeTargetFramework>$(TargetFrameworks)</XUnitRuntimeTargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
