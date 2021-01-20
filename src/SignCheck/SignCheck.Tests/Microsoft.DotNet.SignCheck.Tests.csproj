@@ -1,12 +1,12 @@
 <!-- Licensed to the .NET Foundation under one or more agreements. The .NET Foundation licenses this file to you under the MIT license. -->
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net472;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>net472</TargetFrameworks>
     <LangVersion>Latest</LangVersion>
-    <NoWarn>8002;NU1702</NoWarn>
+    <NoWarn>8002</NoWarn>
     <IsTestProject>true</IsTestProject>
+    <Platforms>x86</Platforms>
     <PlatformTarget Condition=" '$(PlatformTarget)' == '' ">x86</PlatformTarget>
-    <NuGetTargetMoniker>.NETFramework,Version=v4.7.2</NuGetTargetMoniker>
   </PropertyGroup>
 
   <ItemGroup>
