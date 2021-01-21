@@ -49,9 +49,9 @@
     <XUnitProject Remove="..\src\Microsoft.DotNet.Build.Tasks.VisualStudio.Tests\Microsoft.DotNet.Build.Tasks.VisualStudio.Tests.csproj"/>
 
     <XUnitProject Remove="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" />
-
     <XUnitProject Include="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj">
       <TargetFramework>net472</TargetFramework>
+      <RuntimeTargetFramework>net472</RuntimeTargetFramework>
     </XUnitProject>
   </ItemGroup>
 
