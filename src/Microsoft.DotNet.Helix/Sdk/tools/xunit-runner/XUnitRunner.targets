@@ -31,6 +31,7 @@
           Condition="'@(XUnitProject)' != ''"
           BeforeTargets="CoreBuild"
           Outputs="%(XUnitProject.Identity)%(XUnitProject.TargetFramework)%(XUnitProject.RuntimeTargetFramework)%(XUnitProject.AdditionalProperties)">
+    <Message Importance="High" Text="Name: %(XUnitProject.identity) TargetFramework: %(XUnitProject.TargetFramework)" />
     <PropertyGroup>
       <_CurrentXUnitProject>%(XUnitProject.Identity)</_CurrentXUnitProject>
       <_CurrentPublishTargetFramework>%(XUnitProject.TargetFramework)</_CurrentPublishTargetFramework>
