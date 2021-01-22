@@ -57,11 +57,14 @@
     </ItemGroup>
   </Target>
 
-  
   <Target Name="CreateXUnitWorkItems"
           Condition="'@(XUnitProject)' != ''"
-          BeforeTargets="CoreTest">    
-    <CreateXUnitWorkItems XUnitProjects="@(XUnitProject)" IsPosixShell="$(IsPosixShell)" XUnitArguments="$(XUnitArguments)" XUnitWorkItemTimeout="$(XUnitWorkItemTimeout)" DotNetCliVersion="$(DotNetCliVersion)">
+          BeforeTargets="CoreTest">
+    <ItemGroup>
+      <_XUnitProject Include="@(XUnitProject)" Condition="'%(XUnitProject.HelixTargetQueue)' == ''" />
+      <_XUnitProject Include="@(XUnitProject)" Condition="'$(HelixTargetQueue)' == '%(XUnitProject.HelixTargetQueue)'" />
+    </ItemGroup>
+    <CreateXUnitWorkItems XUnitProjects="@(_XUnitProject)" IsPosixShell="$(IsPosixShell)" XUnitArguments="$(XUnitArguments)" XUnitWorkItemTimeout="$(XUnitWorkItemTimeout)" DotNetCliVersion="$(DotNetCliVersion)">
       <Output TaskParameter="XUnitWorkItems" ItemName="HelixWorkItem"/>
     </CreateXUnitWorkItems>
   </Target>
