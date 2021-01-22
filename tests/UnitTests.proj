@@ -48,7 +48,9 @@
     <!-- Exclude tests that do not target .NET Core -->
     <XUnitProject Remove="..\src\Microsoft.DotNet.Build.Tasks.VisualStudio.Tests\Microsoft.DotNet.Build.Tasks.VisualStudio.Tests.csproj"/>
 
-    <XUnitProject Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" TargetFramework="net472" RuntimeTargetFramework="net472" HelixTargetQueue="Windows.10.Amd64" />
+    <XUnitProject Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" TargetFramework="net472" RuntimeTargetFramework="net472" />
+    <XUnitProject Condition="'$(HelixAccessToken)' != ''" Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" HelixTargetQueue="Windows.10.Amd64" />
+    <XUnitProject Condition="'$(HelixAccessToken)' == ''" Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" HelixTargetQueue="Windows.10.Amd64.Open" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(HelixAccessToken)' != '' ">
