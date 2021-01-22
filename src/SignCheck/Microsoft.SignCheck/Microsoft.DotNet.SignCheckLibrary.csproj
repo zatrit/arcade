@@ -9,6 +9,7 @@
     <IsPackable>false</IsPackable>
     <ExcludeFromSourceBuild>true</ExcludeFromSourceBuild>
     <NoWarn>8002</NoWarn>
+    <Platforms>x86</Platforms>
   </PropertyGroup>
   <PropertyGroup Label="Nuget Package Settings">
     <IsTool>true</IsTool>

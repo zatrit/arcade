@@ -5,6 +5,8 @@
     <LangVersion>Latest</LangVersion>
     <NoWarn>8002</NoWarn>
     <IsTestProject>true</IsTestProject>
+    <Platforms>x86</Platforms>
+    <PlatformTarget Condition=" '$(PlatformTarget)' == '' ">x86</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
