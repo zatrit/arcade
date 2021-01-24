@@ -6,10 +6,11 @@
 
   <Target Name="StartTestRuns"
           BeforeTargets="CoreBuild"
-          Outputs="%(HelixTargetQueue.Identity)">
+          Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.HelixTargetQueuePlatform)">
     <PropertyGroup>
       <_CurrentTargetQueue>%(HelixTargetQueue.Identity)</_CurrentTargetQueue>
       <_CurrentTestRunName>%(HelixTargetQueue.TestRunName)</_CurrentTestRunName>
+      <_CurrentXUnitArch>%(HelixTargetQueue.HelixTargetQueuePlatform)<_CurrentXUnitArch>
       <_CurrentTestRunName Condition="'$(_CurrentTestRunName)' == ''">$(TestRunNamePrefix)$(_CurrentTargetQueue)$(TestRunNameSuffix)</_CurrentTestRunName>
     </PropertyGroup>
     <Message Text="Starting Azure Pipelines Test Run $(_CurrentTestRunName)" Importance="High"/>
@@ -17,7 +18,7 @@
       <Output TaskParameter="TestRunId" PropertyName="TestRunId"/>
     </StartAzurePipelinesTestRun>
     <ItemGroup>
-      <HelixTargetQueue Condition="'%(Identity)' == '$(_CurrentTargetQueue)'">
+      <HelixTargetQueue Condition="'%(Identity)' == '$(_CurrentTargetQueue)' and '%(HelixTargetQueuePlatform)' == '$(_CurrentXUnitArch)'">
         <TestRunId>$(TestRunId)</TestRunId>
         <TestRunName>$(_CurrentTestRunName)</TestRunName>
         <AdditionalProperties>TestRunId=$(TestRunId)</AdditionalProperties>
