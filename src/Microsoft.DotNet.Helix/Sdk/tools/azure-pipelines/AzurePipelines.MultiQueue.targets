@@ -18,7 +18,7 @@
       <Output TaskParameter="TestRunId" PropertyName="TestRunId"/>
     </StartAzurePipelinesTestRun>
     <ItemGroup>
-      <HelixTargetQueue Condition="'%(Identity)' == '$(_CurrentTargetQueue)' and '%(HelixTargetQueuePlatform)' == '$(_CurrentXUnitArch)'">
+      <HelixTargetQueue Condition="'%(Identity)' == '$(_CurrentTargetQueue)' and '%(HelixTargetQueue.HelixTargetQueuePlatform)' == '$(_CurrentXUnitArch)'">
         <TestRunId>$(TestRunId)</TestRunId>
         <TestRunName>$(_CurrentTestRunName)</TestRunName>
         <AdditionalProperties>TestRunId=$(TestRunId)</AdditionalProperties>
