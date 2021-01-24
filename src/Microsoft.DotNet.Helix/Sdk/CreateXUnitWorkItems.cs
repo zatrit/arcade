@@ -105,7 +105,7 @@ namespace Microsoft.DotNet.Helix.Sdk
             xunitProject.TryGetMetadata("Arguments", out string arguments);
 
             string assemblyName = Path.GetFileName(targetPath);
-            string x86Identifier = Platform.Equals("x86", StringComparison.IgnoreCaseOrdinal) ? ".x86" : "";
+            string x86Identifier = Platform.Equals("x86", StringComparison.OrdinalIgnoreCase) ? ".x86" : "";
             string driver = runtimeTargetFramework.Contains("core") ? $"{PathToDotnet} exec " : "";
             string runnerName = runtimeTargetFramework.Contains("core") ? "xunit.console.dll" : $"xunit.console{ x86Identifier }.exe";
             string correlationPayload = IsPosixShell ? "$HELIX_CORRELATION_PAYLOAD" : "%HELIX_CORRELATION_PAYLOAD%";
