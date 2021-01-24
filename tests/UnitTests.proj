@@ -48,7 +48,6 @@
     <!-- Exclude tests that do not target .NET Core -->
     <XUnitProject Remove="..\src\Microsoft.DotNet.Build.Tasks.VisualStudio.Tests\Microsoft.DotNet.Build.Tasks.VisualStudio.Tests.csproj"/>
 
-    <XUnitProject Remove="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj"/>
     <XUnitProject Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" TargetFramework="net472" RuntimeTargetFramework="net472" />
     <XUnitProject Condition="'$(HelixAccessToken)' != ''" Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" HelixTargetQueue="Windows.10.Amd64" HelixTargetQueuePlatform="x86" />
     <XUnitProject Condition="'$(HelixAccessToken)' == ''" Update="..\src\SignCheck\SignCheck.Tests\Microsoft.DotNet.SignCheck.Tests.csproj" HelixTargetQueue="Windows.10.Amd64.Open" HelixTargetQueuePlatform="x86" />
@@ -58,7 +57,7 @@
     <HelixTargetQueue Include="Debian.9.Amd64"/>
     <HelixTargetQueue Include="RedHat.7.Amd64"/>
     <HelixTargetQueue Include="Windows.10.Amd64"/>
-    <HelixTargetQueue Include="Windows.10.Amd64" Platform="x86"  AdditionalProperties="Platform=x86" />
+    <HelixTargetQueue Include="Windows.10.Amd64" Platform="x86" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(HelixAccessToken)' == '' ">
@@ -71,7 +70,7 @@
     <HelixTargetQueue Include="Debian.9.Amd64.Open"/>
     <HelixTargetQueue Include="RedHat.7.Amd64.Open"/>
     <HelixTargetQueue Include="Windows.10.Amd64.Open"/>
-    <HelixTargetQueue Include="Windows.10.Amd64.Open" Platform="x86" AdditionalProperties="Platform=x86" />
+    <HelixTargetQueue Include="Windows.10.Amd64.Open" Platform="x86" />
   </ItemGroup>
 
   <PropertyGroup Condition="!$(HelixTargetQueue.StartsWith('Windows'))">
