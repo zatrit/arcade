@@ -9,7 +9,7 @@
           Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.HelixTargetQueuePlatform)">
     <PropertyGroup>
       <_CurrentTargetQueue>%(HelixTargetQueue.Identity)</_CurrentTargetQueue>
-      <_CurrentTestRunName>%(HelixTargetQueue.TestRunName)</_CurrentTestRunName>
+      <_CurrentTestRunName>%(HelixTargetQueue.TestRunName)%(HelixTargetQueue.HelixTargetQueuePlatform)</_CurrentTestRunName>
       <_CurrentXUnitArch>%(HelixTargetQueue.HelixTargetQueuePlatform)</_CurrentXUnitArch>
       <_CurrentTestRunName Condition="'$(_CurrentTestRunName)' == ''">$(TestRunNamePrefix)$(_CurrentTargetQueue)$(TestRunNameSuffix)</_CurrentTestRunName>
     </PropertyGroup>
