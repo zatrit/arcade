@@ -33,7 +33,7 @@
 
   <Target Name="StopTestRuns"
           AfterTargets="CoreTest"
-          Outputs="%(HelixTargetQueue.Identity)">
+          Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.HelixTargetPlatform)">
     <Message Text="Stopping Azure Pipelines Test Run %(HelixTargetQueue.TestRunName)" Importance="High"/>
     <StopAzurePipelinesTestRun TestRunId="%(HelixTargetQueue.TestRunId)"/>
   </Target>
