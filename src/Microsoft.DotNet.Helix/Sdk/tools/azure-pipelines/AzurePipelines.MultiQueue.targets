@@ -6,19 +6,19 @@
 
   <Target Name="StartTestRuns"
           BeforeTargets="CoreBuild"
-          Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.HelixTargetQueuePlatform)">
+          Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.Platform)">
     <PropertyGroup>
       <_CurrentTargetQueue>%(HelixTargetQueue.Identity)</_CurrentTargetQueue>
-      <_CurrentTestRunName>%(HelixTargetQueue.TestRunName)%(HelixTargetQueue.HelixTargetQueuePlatform)</_CurrentTestRunName>
-      <_CurrentXUnitArch>%(HelixTargetQueue.HelixTargetQueuePlatform)</_CurrentXUnitArch>
-      <_CurrentTestRunName Condition="'$(_CurrentTestRunName)' == ''">$(TestRunNamePrefix)$(_CurrentTargetQueue)$(TestRunNameSuffix)</_CurrentTestRunName>
+      <_CurrentTestRunName>%(HelixTargetQueue.TestRunName)%(HelixTargetQueue.Platform)</_CurrentTestRunName>
+      <_CurrentXUnitArch>%(HelixTargetQueue.Platform)</_CurrentXUnitArch>
+      <_CurrentTestRunName Condition="'$(_CurrentTestRunName)' == ''">$(TestRunNamePrefix)$(_CurrentTargetQueue)$(_CurrentXUnitArch)$(TestRunNameSuffix)</_CurrentTestRunName>
     </PropertyGroup>
     <Message Text="Starting Azure Pipelines Test Run $(_CurrentTestRunName)" Importance="High"/>
     <StartAzurePipelinesTestRun TestRunName="$(_CurrentTestRunName)">
       <Output TaskParameter="TestRunId" PropertyName="TestRunId"/>
     </StartAzurePipelinesTestRun>
     <ItemGroup>
-      <HelixTargetQueue Condition="'%(Identity)' == '$(_CurrentTargetQueue)' and '%(HelixTargetQueue.HelixTargetQueuePlatform)' == '$(_CurrentXUnitArch)'">
+      <HelixTargetQueue Condition="'%(Identity)' == '$(_CurrentTargetQueue)' and '%(HelixTargetQueue.Platform)' == '$(_CurrentXUnitArch)'">
         <TestRunId>$(TestRunId)</TestRunId>
         <TestRunName>$(_CurrentTestRunName)</TestRunName>
         <AdditionalProperties>TestRunId=$(TestRunId)</AdditionalProperties>
@@ -33,7 +33,7 @@
 
   <Target Name="StopTestRuns"
           AfterTargets="CoreTest"
-          Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.HelixTargetPlatform)">
+          Outputs="%(HelixTargetQueue.Identity)%(HelixTargetQueue.Platform)">
     <Message Text="Stopping Azure Pipelines Test Run %(HelixTargetQueue.TestRunName)" Importance="High"/>
     <StopAzurePipelinesTestRun TestRunId="%(HelixTargetQueue.TestRunId)"/>
   </Target>
