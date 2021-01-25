@@ -60,12 +60,16 @@
   <Target Name="CreateXUnitWorkItems"
           Condition="'@(XUnitProject)' != ''"
           BeforeTargets="CoreTest">
+    <PropertyGroup>
+      <_UseX86XUnitArchitecture>false</_UseX86XUnitArchitecture>
+      <_UseX86XUnitArchitecture Condition="'$(XUnitArchitecture)' == 'x86'">true</_UseX86XUnitArchitecture>
+    </PropertyGroup>
     <ItemGroup>
       <_XUnitProject Remove="@(_XUnitProject)" />
-      <_XUnitProject Include="@(XUnitProject)" Condition="'%(XUnitProject.HelixTargetQueue)' == '' and '%(XUnitProject.HelixTargetQueuePlatform)' == '$(HelixTargetQueuePlatform)'"/>
-      <_XUnitProject Include="@(XUnitProject)" Condition="'$(HelixTargetQueue)' == '%(XUnitProject.HelixTargetQueue)' and '%(XUnitProject.HelixTargetQueuePlatform)' == '$(HelixTargetQueuePlatform)'" />
+      <_XUnitProject Include="@(XUnitProject)" Condition="'%(XUnitProject.HelixTargetQueue)' == '' and '%(XUnitProject.HelixTargetQueueXUnitArchitecture)' == '$(XUnitArchitecture)'"/>
+      <_XUnitProject Include="@(XUnitProject)" Condition="'$(HelixTargetQueue)' == '%(XUnitProject.HelixTargetQueue)' and '%(XUnitProject.HelixTargetQueueXUnitArchitecture)' == '$(XUnitArchitecture)'" />
     </ItemGroup>
-    <CreateXUnitWorkItems XUnitProjects="@(_XUnitProject)" IsPosixShell="$(IsPosixShell)" XUnitArguments="$(XUnitArguments)" XUnitWorkItemTimeout="$(XUnitWorkItemTimeout)" DotNetCliVersion="$(DotNetCliVersion)" Platform="$(HelixTargetQueuePlatform)">
+    <CreateXUnitWorkItems XUnitProjects="@(_XUnitProject)" IsPosixShell="$(IsPosixShell)" XUnitArguments="$(XUnitArguments)" XUnitWorkItemTimeout="$(XUnitWorkItemTimeout)" DotNetCliVersion="$(DotNetCliVersion)" UseX86XUnitArchitecture="$(_UseX86XUnitArchitecture)">
       <Output TaskParameter="XUnitWorkItems" ItemName="HelixWorkItem"/>
     </CreateXUnitWorkItems>
   </Target>

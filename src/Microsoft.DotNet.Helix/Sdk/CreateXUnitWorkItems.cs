@@ -47,7 +47,7 @@ namespace Microsoft.DotNet.Helix.Sdk
 
         public string DotNetCliVersion { get; set; }
 
-        public string Platform { get; set; }
+        public bool UseX86XUnitArchitecture { get; set; }
 
         /// <summary>
         /// An array of ITaskItems of type HelixWorkItem
@@ -106,7 +106,7 @@ namespace Microsoft.DotNet.Helix.Sdk
 
             string assemblyName = Path.GetFileName(targetPath);
             string x86Identifier = "";
-            if (!string.IsNullOrEmpty(Platform))
+            if (UseX86XUnitArchitecture)
             {
                 x86Identifier= ".x86";
             }
