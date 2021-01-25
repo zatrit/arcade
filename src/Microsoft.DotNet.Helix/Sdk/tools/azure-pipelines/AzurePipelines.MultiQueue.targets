@@ -10,7 +10,7 @@
     <PropertyGroup>
       <_CurrentTargetQueue>%(HelixTargetQueue.Identity)</_CurrentTargetQueue>
       <_CurrentTestRunName>%(HelixTargetQueue.TestRunName)</_CurrentTestRunName>
-      <_CurrentXUnitArch>%(HelixTargetQueue.PlatfoHelixTargetQueueXUnitArchitecturerm)</_CurrentXUnitArch>
+      <_CurrentXUnitArch>%(HelixTargetQueue.HelixTargetQueueXUnitArchitecture)</_CurrentXUnitArch>
       <_CurrentTestRunName Condition="'$(_CurrentTestRunName)' == ''">$(TestRunNamePrefix)$(_CurrentTargetQueue)$(_CurrentXUnitArch)$(TestRunNameSuffix)</_CurrentTestRunName>
     </PropertyGroup>
     <Message Text="Starting Azure Pipelines Test Run $(_CurrentTestRunName)" Importance="High"/>
