@@ -95,7 +95,8 @@ stages:
         - job: Windows_NT_Desktop_MsBuild
           timeoutInMinutes: 90
           pool:
-            vmImage: windows-latest
+            name: NetCorePublic-Pool
+            queue: BuildPool.Server.Amd64.VS2017.Arcade.Open
           strategy:
             matrix:
               Build_Release:
