@@ -92,6 +92,24 @@ stages:
               --prepareMachine
               /p:Test=false
             displayName: Unix Build / Publish
+        - job: Windows_NT_Desktop_MsBuild
+          timeoutInMinutes: 90
+          pool:
+            vmImage: windows-latest
+          strategy:
+            matrix:
+              Build_Release:
+                _BuildConfig: Release
+          preSteps:
+          - checkout: self
+            clean: true
+          steps:
+          - script: eng\common\cibuild.cmd
+              -configuration $(_BuildConfig)
+              -prepareMachine
+              -msbuildEngine vs
+              /p:Test=false
+            displayName: Windows Build / Publish with Desktop MsBuild
 
 - ${{ if eq(variables._RunAsPublic, True) }}:
   - stage: Test
