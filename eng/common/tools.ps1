@@ -565,6 +565,7 @@ function InitializeBuildTool() {
     try {
       $msbuildPath = InitializeVisualStudioMSBuild -install:$restore
     } catch {
+      Write-Host "I am in hereeeeeeee"
       Write-PipelineTelemetryError -Category 'InitializeToolset' -Message $_
       ExitWithExitCode 1
     }
