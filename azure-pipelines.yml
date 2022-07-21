@@ -316,16 +316,6 @@ stages:
               HelixAccessToken: ''
 
 - ${{ if eq(variables._RunAsInternal, True) }}:
-  - stage: ValidateSdk
-    displayName: Validate Arcade SDK
-    dependsOn: build
-    jobs:
-    - template: /eng/validate-sdk.yml
-      parameters:
-        buildArgs: -configuration $(_BuildConfig) 
-          -prepareMachine
-          $(_InternalBuildArgs)
-          /p:Test=false
 
   - template: eng\common\templates\post-build\post-build.yml
     parameters:
@@ -337,10 +327,9 @@ stages:
       enableSourceLinkValidation: false
       publishDependsOn:
       - Validate
-      - ValidateSdk
       # This is to enable SDL runs part of Post-Build Validation Stage
       SDLValidationParameters:
-        enable: true
+        enable: false
         continueOnError: false
         params: ' -SourceToolsList @("policheck","credscan")
         -TsaInstanceURL $(_TsaInstanceURL)
